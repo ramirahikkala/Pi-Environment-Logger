@@ -1,0 +1,4 @@
+wheel
+pymongo
+dnspython
+git+https://github.com/adafruit/Adafruit_Python_BMP
