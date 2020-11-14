@@ -19,8 +19,8 @@ def main():
     )
 
     db = client.environment
+    print("Connected to database")
     bmp = BMP085.BMP085()
-
     previous = None
 
     while True:
@@ -30,7 +30,10 @@ def main():
             'altitude': bmp.read_altitude(),
             'date': datetime.now(),
             'location': os.environ['KOTI_LOCATION']}
+        print("new measurement")
         if environment != previous:
-            db.reviews.insert_one(environment)
+            print("Write to database")
+            print(db.reviews.insert_one(environment))
+            print("Written")
             previous = environment
         time.sleep(FREQUENCY_SECONDS)
