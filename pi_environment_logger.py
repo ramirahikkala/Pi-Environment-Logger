@@ -25,9 +25,9 @@ def main():
 
     while True:
         environment = {
-            'temp': bmp.read_temperature(),
-            'pressure': bmp.read_pressure(),
-            'altitude': bmp.read_altitude(),
+            'temp': round(bmp.read_temperature(), 3),
+            'pressure': round(bmp.read_pressure(), 3),
+            'altitude': round(bmp.read_altitude(), 3),
             'date': datetime.now(),
             'location': os.environ['KOTI_LOCATION']}
         print("new measurement")
