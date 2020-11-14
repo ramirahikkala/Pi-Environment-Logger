@@ -25,11 +25,11 @@ def main():
 
     while True:
         environment = {
-            'temp': round(bmp.read_temperature(), 3),
-            'pressure': round(bmp.read_pressure(), 3),
-            'altitude': round(bmp.read_altitude(), 3),
+            'temp': bmp.read_temperature(),
+            'pressure': bmp.read_pressure(),
             'date': datetime.now(),
-            'location': os.environ['KOTI_LOCATION']}
+            'location': os.environ['KOTI_LOCATION'],
+        }
         print("new measurement")
         if environment != previous:
             print("Write to database")
@@ -37,5 +37,6 @@ def main():
             print("Written")
             previous = environment
         time.sleep(FREQUENCY_SECONDS)
+
 
 main()
