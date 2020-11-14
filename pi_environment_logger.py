@@ -37,3 +37,5 @@ def main():
             print("Written")
             previous = environment
         time.sleep(FREQUENCY_SECONDS)
+
+main()
