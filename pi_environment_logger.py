@@ -18,7 +18,7 @@ def main():
         + '/?retryWrites=true&w=majority'
     )
 
-    db = client.environment
+    db = client.koti
     print("Connected to database")
     bmp = BMP085.BMP085()
     previous = None
@@ -33,7 +33,7 @@ def main():
         print("new measurement")
         if environment != previous:
             print("Write to database")
-            print(db.reviews.insert_one(environment))
+            print(db.environment.insert_one(environment))
             print("Written")
             previous = environment
         time.sleep(FREQUENCY_SECONDS)
