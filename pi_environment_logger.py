@@ -19,7 +19,6 @@ def main():
     )
 
     db = client.koti
-    print("Connected to database")
     bmp = BMP085.BMP085()
     previous = None
 
@@ -30,11 +29,8 @@ def main():
             'date': datetime.now(),
             'location': os.environ['KOTI_LOCATION'],
         }
-        print("new measurement")
         if environment != previous:
-            print("Write to database")
-            print(db.environment.insert_one(environment))
-            print("Written")
+            db.environment.insert_one(environment)
             previous = environment
         time.sleep(FREQUENCY_SECONDS)
 
