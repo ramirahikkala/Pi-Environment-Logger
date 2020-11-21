@@ -23,15 +23,19 @@ def main():
     previous = None
 
     while True:
-        environment = {
-            'temp': bmp.read_temperature(),
-            'pressure': bmp.read_pressure(),
-            'date': datetime.now(),
-            'location': os.environ['KOTI_LOCATION'],
-        }
-        if environment != previous:
-            db.environment.insert_one(environment)
-            previous = environment
+        try:
+            environment = {
+                'temp': bmp.read_temperature(),
+                'pressure': bmp.read_pressure(),
+                'date': datetime.now(),
+                'location': os.environ['KOTI_LOCATION'],
+            }
+            if environment != previous:
+                db.environment.insert_one(environment)
+                previous = environment
+        except Exception as e:
+            print(e)
+
         time.sleep(FREQUENCY_SECONDS)
 
 
